@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # Monitora as dependências do Node.js (seu package.json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Opcional: Adiciona essas tags automaticamente nos Pull Requests criados
+    labels:
+      - "dependencies"
+      - "security"
+
+  # Monitora as GitHub Actions (Útil se você for fazer deploy automático no futuro)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "actions"
