@@ -40,8 +40,8 @@ Este projeto foi construído como um componente único em React (`App.jsx`) util
 1.  **Clone o repositório:**
     
     ```
-    git clone [https://github.com/douglaswp/hardware-ai.git](https://github.com/douglaswp/hardware-ai.git)
-    cd hardware-ai
+    git clone [https://github.com/douglaswp/tflops-calculator.git](https://github.com/douglaswp/tflops-calculator.git)
+    cd tflops-calculator
     
     ```
     
