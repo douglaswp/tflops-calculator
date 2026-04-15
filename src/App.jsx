@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 
 // --- Ícones SVG ---
-const CpuIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>;
-const GpuIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="6" rx="2"/><path d="M7 18v3"/><path d="M11 18v3"/><path d="M15 18v3"/><path d="M5 6V3"/><path d="M9 6V3"/><path d="M13 6V3"/><path d="M17 6V3"/></svg>;
-const AppleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 3-1 0-2-1.5-2-3Z"/></svg>;
-const TrashIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>;
-const ChartIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>;
-const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
-const ChevronDownIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>;
+const CpuIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="16" height="16" x="4" y="4" rx="2" /><rect width="6" height="6" x="9" y="9" rx="1" /><path d="M15 2v2" /><path d="M15 20v2" /><path d="M2 15h2" /><path d="M2 9h2" /><path d="M20 15h2" /><path d="M20 9h2" /><path d="M9 2v2" /><path d="M9 20v2" /></svg>;
+const GpuIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="6" rx="2" /><path d="M7 18v3" /><path d="M11 18v3" /><path d="M15 18v3" /><path d="M5 6V3" /><path d="M9 6V3" /><path d="M13 6V3" /><path d="M17 6V3" /></svg>;
+const AppleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z" /><path d="M10 2c1 .5 2 2 2 3-1 0-2-1.5-2-3Z" /></svg>;
+const TrashIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /></svg>;
+const ChartIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" /></svg>;
+const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>;
+const ChevronDownIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>;
 const PlusIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>;
 const SaveIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>;
-const EditIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>;
-const XIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
-const SunIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>;
-const MoonIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>;
+const EditIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>;
+const XIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>;
+const SunIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>;
+const MoonIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>;
 
 const Spinner = () => (
-  <svg className="animate-spin h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <svg className="w-8 h-8 text-indigo-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
   </svg>
@@ -25,10 +25,10 @@ const Spinner = () => (
 // --- Utilitário de Moeda ---
 const formatCurrency = (value) => {
   if (value === 0 || value === null || value === undefined) return 'Não informado';
-  return new Intl.NumberFormat('pt-BR', { 
-    style: 'currency', 
-    currency: 'BRL', 
-    maximumFractionDigits: 0 
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    maximumFractionDigits: 0
   }).format(value);
 };
 
@@ -48,7 +48,7 @@ const SearchableSelect = ({ options, value, onChange, placeholder, isDark }) => 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const filteredOptions = options.filter(opt => 
+  const filteredOptions = options.filter(opt =>
     opt.label.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -56,12 +56,11 @@ const SearchableSelect = ({ options, value, onChange, placeholder, isDark }) => 
 
   return (
     <div className="relative" ref={wrapperRef}>
-      <div 
-        className={`flex items-center justify-between w-full p-2.5 rounded-lg cursor-pointer text-sm border ${
-          isDark 
-            ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-slate-200' 
+      <div
+        className={`flex items-center justify-between w-full p-2.5 rounded-lg cursor-pointer text-sm border ${isDark
+            ? 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-slate-200'
             : 'bg-slate-50 border-slate-300 hover:bg-slate-100 text-slate-900'
-        }`}
+          }`}
         onClick={() => { setIsOpen(!isOpen); setSearch(''); }}
       >
         <span className={value ? (isDark ? "text-slate-200" : "text-slate-900") : "text-slate-500"}>{selectedLabel}</span>
@@ -69,16 +68,14 @@ const SearchableSelect = ({ options, value, onChange, placeholder, isDark }) => 
       </div>
 
       {isOpen && (
-        <div className={`absolute z-50 w-full mt-1 rounded-lg shadow-xl max-h-60 flex flex-col overflow-hidden border ${
-          isDark ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-white border-slate-200 text-slate-800'
-        }`}>
+        <div className={`absolute z-50 w-full mt-1 rounded-lg shadow-xl max-h-60 flex flex-col overflow-hidden border ${isDark ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-white border-slate-200 text-slate-800'
+          }`}>
           <div className={`p-2 border-b ${isDark ? 'border-slate-700' : 'border-slate-200'}`}>
             <input
               type="text"
               autoFocus
-              className={`w-full p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 text-sm border ${
-                isDark ? 'bg-slate-900 border-slate-700' : 'bg-slate-50 border-slate-300'
-              }`}
+              className={`w-full p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 text-sm border ${isDark ? 'bg-slate-900 border-slate-700' : 'bg-slate-50 border-slate-300'
+                }`}
               placeholder="Pesquisar modelo..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -86,14 +83,13 @@ const SearchableSelect = ({ options, value, onChange, placeholder, isDark }) => 
           </div>
           <div className="overflow-y-auto">
             {filteredOptions.length === 0 ? (
-              <div className="p-3 text-sm text-slate-500 text-center">Nenhum resultado encontrado</div>
+              <div className="p-3 text-sm text-center text-slate-500">Nenhum resultado encontrado</div>
             ) : (
               filteredOptions.map((opt, idx) => (
                 <div
                   key={idx}
-                  className={`px-3 py-2.5 text-sm cursor-pointer flex justify-between items-center ${
-                    isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-100'
-                  }`}
+                  className={`px-3 py-2.5 text-sm cursor-pointer flex justify-between items-center ${isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-100'
+                    }`}
                   onClick={() => {
                     onChange(opt.value);
                     setIsOpen(false);
@@ -121,7 +117,7 @@ const BarChart = ({ data, dataKey, nameKey, label, color, formatValue, hideEmpty
       </div>
     );
   }
-  
+
   const maxVal = Math.max(...data.map(d => d[dataKey]), 0.0001);
 
   return (
@@ -135,19 +131,16 @@ const BarChart = ({ data, dataKey, nameKey, label, color, formatValue, hideEmpty
               <div className={`w-1/3 text-sm text-right truncate font-medium ${isDark ? 'text-slate-400' : 'text-slate-600'}`} title={item[nameKey]}>
                 {item[nameKey]}
               </div>
-              
-              {/* O Container do gráfico tem tamanho fixo para não distorcer com o flexbox */}
-              <div className="w-2/3 flex items-center">
+
+              <div className="flex items-center w-2/3">
                 <div className={`flex-1 h-6 rounded-md relative ${isDark ? 'bg-slate-700/50' : 'bg-slate-100'}`}>
-                  {/* A barra colorida fica absoluta dentro do container, impedindo que ela sofra "shrink" (esmagamento) do flexbox */}
-                  <div 
-                    className={`absolute left-0 top-0 h-6 rounded-md ${color} transition-all duration-700 ease-out`} 
+                  <div
+                    className={`absolute left-0 top-0 h-6 rounded-md ${color} transition-all duration-700 ease-out`}
                     style={{ width: `${widthPct}%`, minWidth: widthPct > 0 ? '4px' : '0' }}
                   ></div>
                 </div>
-                
-                {/* O Label do valor tem tamanho fixo (w-20) para o gráfico alinhar perfeito */}
-                <span className={`ml-3 text-sm font-mono whitespace-nowrap w-20 text-right ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+
+                <span className={`ml-3 text-sm font-mono whitespace-nowrap w-30 text-right ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   {formatValue ? formatValue(item[dataKey]) : item[dataKey]}
                 </span>
               </div>
@@ -162,7 +155,7 @@ const BarChart = ({ data, dataKey, nameKey, label, color, formatValue, hideEmpty
 export default function App() {
   const [hardwareList, setHardwareList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isDark, setIsDark] = useState(true); // Estado do Tema
+  const [isDark, setIsDark] = useState(true);
 
   // Estados do formulário Principal
   const [selectedType, setSelectedType] = useState('GPU');
@@ -189,7 +182,7 @@ export default function App() {
   useEffect(() => {
     const fetchHardwareData = async () => {
       setLoading(true);
-      
+
       let fetchedHardware = [];
 
       try {
@@ -202,14 +195,14 @@ export default function App() {
         for (const item of urls) {
           const res = await fetch(item.url);
           const text = await res.text();
-          
+
           const regex = /(?:(?:"([^"]+)")|(?:'([^']+)')|([a-zA-Z0-9_.-]+))\s*:\s*\{([^}]*?tflops\s*:\s*([\d.]+)[^}]*)\}/g;
           let match;
-          
+
           while ((match = regex.exec(text)) !== null) {
             const name = match[1] || match[2] || match[3];
             const tflops = parseFloat(match[5]);
-            
+
             let memory = null;
             const memMatch = match[4].match(/memory\s*:\s*\[([\s\S]*?)\]/);
             if (memMatch) {
@@ -255,7 +248,7 @@ export default function App() {
 
       const allHardware = [...fetchedHardware, ...customHardware];
       const uniqueItems = Array.from(new Map(allHardware.map(item => [item.name, item])).values());
-      
+
       uniqueItems.sort((a, b) => b.tflops - a.tflops);
       setHardwareList(uniqueItems);
       setLoading(false);
@@ -306,7 +299,7 @@ export default function App() {
   const handleAddItem = (e) => {
     e.preventDefault();
     if (!selectedModel || !quantity) return;
-    
+
     const hw = hardwareList.find(h => h.name === selectedModel);
     if (!hw) return;
 
@@ -326,7 +319,7 @@ export default function App() {
     };
 
     setSelectedItems([...selectedItems, newItem]);
-    
+
     setCost('');
     setQuantity(1);
     setSelectedModel('');
@@ -357,7 +350,7 @@ export default function App() {
     localStorage.setItem('custom_hardware_list', JSON.stringify(customList));
 
     setHardwareList(prev => [...prev, newCustom].sort((a, b) => b.tflops - a.tflops));
-    
+
     setCustomName('');
     setCustomTflops('');
     setCustomVram('');
@@ -366,9 +359,9 @@ export default function App() {
   };
 
   const removeItem = (id) => setSelectedItems(selectedItems.filter(item => item.id !== id));
-  
+
   const toggleIncludeInTotal = (id) => {
-    setSelectedItems(selectedItems.map(item => 
+    setSelectedItems(selectedItems.map(item =>
       item.id === id ? { ...item, includedInTotal: !item.includedInTotal } : item
     ));
   };
@@ -407,15 +400,15 @@ export default function App() {
     return selectedItems.map(item => {
       const totalTflops = item.tflops * item.quantity;
       const vramLabel = item.selectedVram ? ` ${item.selectedVram}GB` : '';
-      
+
       let costPerTflop = 0;
       let tflopsPerDollar = 0;
 
       if (item.cost > 0) {
-         costPerTflop = item.cost / item.tflops;
-         tflopsPerDollar = item.tflops / item.cost;
+        costPerTflop = item.cost / item.tflops;
+        tflopsPerDollar = item.tflops / item.cost;
       }
-      
+
       return {
         ...item,
         displayName: `${item.name}${vramLabel} (x${item.quantity})`,
@@ -430,7 +423,7 @@ export default function App() {
     .filter(item => item.includedInTotal)
     .reduce((acc, curr) => acc + curr.totalTflops, 0);
 
-  const MAX_TFLOPS_SCALE = 150; 
+  const MAX_TFLOPS_SCALE = 150;
   const markerPosition = Math.min((totalCombinedTflops / MAX_TFLOPS_SCALE) * 100, 100);
 
   const financialChartData = chartData.filter(d => d.cost > 0);
@@ -446,15 +439,15 @@ export default function App() {
 
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${isDark ? 'bg-[#0b1120] text-slate-200' : 'bg-slate-50 text-slate-800'}`}>
-      <div className="max-w-7xl mx-auto space-y-6 p-4 md:p-8">
-        
+      <div className="p-4 mx-auto space-y-6 max-w-7xl md:p-8">
+
         {/* Cabeçalho */}
         <header className={`pb-4 border-b flex justify-between items-center ${isDark ? 'border-slate-800/50' : 'border-slate-200'}`}>
           <div>
             <h1 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Dashboard de Hardware AI</h1>
             <p className={`text-xs ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Simulador de Poder de Processamento Baseado no HuggingFace</p>
           </div>
-          <button 
+          <button
             onClick={() => setIsDark(!isDark)}
             className={`p-2 rounded-full transition-colors ${isDark ? 'bg-slate-800 text-yellow-400 hover:bg-slate-700' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'}`}
             title="Alternar Tema"
@@ -465,13 +458,13 @@ export default function App() {
 
         {/* Indicador de Processamento Total */}
         <div className={`border p-6 rounded-xl shadow-xl flex flex-col items-center ${isDark ? 'bg-[#0f172a] border-slate-800' : 'bg-white border-slate-200'}`}>
-          <div className="text-center mb-6">
+          <div className="mb-6 text-center">
             <h3 className={`text-sm font-medium uppercase tracking-wider mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Poder de Computação Total</h3>
             <div className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
               {totalCombinedTflops.toLocaleString('pt-BR', { maximumFractionDigits: 2 })} <span className={`text-lg font-normal ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>TFLOPS</span>
             </div>
           </div>
-            
+
           {/* Barra GPU Poor -> GPU Rich */}
           <div className="w-full max-w-3xl">
             <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider mb-2">
@@ -480,12 +473,12 @@ export default function App() {
             </div>
 
             <div className="relative w-full h-2 rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-green-500">
-              <div 
+              <div
                 className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full transition-all duration-700 ease-out border-[3px] ${isDark ? 'bg-white border-[#0f172a]' : 'bg-white border-slate-200'}`}
                 style={{ left: `calc(${markerPosition}% - 8px)` }}
               ></div>
-              
-              <div 
+
+              <div
                 className={`absolute top-4 -translate-x-1/2 text-[10px] py-1 px-2 rounded font-mono transition-all duration-700 ease-out whitespace-nowrap border ${isDark ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-300 text-slate-700'}`}
                 style={{ left: `${markerPosition}%` }}
               >
@@ -495,33 +488,32 @@ export default function App() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+
           {/* Coluna da Esquerda: Formulário e Tabela */}
-          <div className="lg:col-span-5 space-y-6">
-            
+          <div className="space-y-6 lg:col-span-5">
+
             {/* Formulário Principal */}
             <div className={`border p-5 rounded-xl shadow-lg ${isDark ? 'bg-[#0f172a] border-slate-800' : 'bg-white border-slate-200'}`}>
               <h2 className={`text-base font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>Adicionar Hardware</h2>
-              
+
               <form onSubmit={handleAddItem} className="space-y-4">
-                
+
                 {/* 1. Seleção de Tipo */}
                 <div className={`flex gap-2 p-1.5 rounded-full border ${isDark ? 'bg-[#0b1120] border-slate-800' : 'bg-slate-100 border-slate-200'}`}>
                   {[
-                    { id: 'GPU', icon: <GpuIcon/>, label: 'GPU' },
-                    { id: 'CPU', icon: <CpuIcon/>, label: 'CPU' },
-                    { id: 'Apple', icon: <AppleIcon/>, label: 'Apple Silicon' }
+                    { id: 'GPU', icon: <GpuIcon />, label: 'GPU' },
+                    { id: 'CPU', icon: <CpuIcon />, label: 'CPU' },
+                    { id: 'Apple', icon: <AppleIcon />, label: 'Apple Silicon' }
                   ].map(type => (
                     <button
                       key={type.id}
                       type="button"
                       onClick={() => setSelectedType(type.id)}
-                      className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                        selectedType === type.id 
+                      className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${selectedType === type.id
                           ? (isDark ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 shadow-sm' : 'bg-white text-indigo-600 border border-slate-200 shadow-sm')
                           : (isDark ? 'text-slate-500 hover:text-slate-300 border border-transparent' : 'text-slate-500 hover:text-slate-700 border border-transparent')
-                      }`}
+                        }`}
                     >
                       {type.icon} {type.label}
                     </button>
@@ -532,7 +524,7 @@ export default function App() {
                 <div>
                   <label className={`block text-xs font-medium mb-1.5 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Fabricante</label>
                   <div className="relative">
-                    <select 
+                    <select
                       value={selectedProvider}
                       onChange={(e) => setSelectedProvider(e.target.value)}
                       className={`w-full p-2.5 rounded-lg text-sm focus:ring-1 focus:ring-indigo-500 focus:outline-none appearance-none border ${isDark ? 'bg-slate-900 border-slate-700 text-slate-200' : 'bg-slate-50 border-slate-300 text-slate-900'}`}
@@ -550,17 +542,17 @@ export default function App() {
                 {/* 3. Modelo */}
                 <div className="relative">
                   <label className={`block text-xs font-medium mb-1.5 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Modelo</label>
-                  <SearchableSelect 
+                  <SearchableSelect
                     options={availableModels}
                     value={selectedModel}
                     onChange={setSelectedModel}
                     placeholder="Selecione um modelo..."
                     isDark={isDark}
                   />
-                  
+
                   {/* Botão de Customizado */}
                   <div className="mt-2 text-right">
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setShowCustomForm(!showCustomForm)}
                       className={`text-[11px] transition-colors ${isDark ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-800'}`}
@@ -573,10 +565,10 @@ export default function App() {
                 {/* Formulário de Cadastro Customizado (Colapsável) */}
                 {showCustomForm && (
                   <div className={`p-4 rounded-lg border space-y-3 mb-4 ${isDark ? 'bg-slate-800/50 border-indigo-500/30' : 'bg-indigo-50 border-indigo-200'}`}>
-                    <h4 className={`text-xs font-bold mb-2 flex items-center gap-1 ${isDark ? 'text-indigo-300' : 'text-indigo-700'}`}><PlusIcon/> Novo Hardware Local</h4>
+                    <h4 className={`text-xs font-bold mb-2 flex items-center gap-1 ${isDark ? 'text-indigo-300' : 'text-indigo-700'}`}><PlusIcon /> Novo Hardware Local</h4>
                     <div>
                       <label className={`block text-[10px] mb-1 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Nome do Modelo</label>
-                      <input 
+                      <input
                         type="text" value={customName} onChange={e => setCustomName(e.target.value)}
                         placeholder="Ex: RTX 5090" className={`w-full p-2 rounded text-xs border ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                       />
@@ -584,22 +576,22 @@ export default function App() {
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className={`block text-[10px] mb-1 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Poder (TFLOPS)</label>
-                        <input 
+                        <input
                           type="number" step="0.1" value={customTflops} onChange={e => setCustomTflops(e.target.value)}
                           placeholder="Ex: 120.5" className={`w-full p-2 rounded text-xs border ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                         />
                       </div>
                       <div>
                         <label className={`block text-[10px] mb-1 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>VRAMs (GB, opcional)</label>
-                        <input 
+                        <input
                           type="text" value={customVram} onChange={e => setCustomVram(e.target.value)}
                           placeholder="Ex: 24, 48" className={`w-full p-2 rounded text-xs border ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}
                         />
                       </div>
                     </div>
-                    <button 
+                    <button
                       type="button" onClick={handleSaveCustomHardware}
-                      className="w-full py-2 bg-indigo-600/80 hover:bg-indigo-600 text-white text-xs font-bold rounded flex items-center justify-center gap-2"
+                      className="flex items-center justify-center w-full gap-2 py-2 text-xs font-bold text-white rounded bg-indigo-600/80 hover:bg-indigo-600"
                     >
                       <SaveIcon /> Salvar no Cache Local
                     </button>
@@ -611,7 +603,7 @@ export default function App() {
                   <div className="col-span-5">
                     <label className={`block text-xs font-medium mb-1.5 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>VRAM</label>
                     <div className="relative">
-                      <select 
+                      <select
                         value={selectedVram}
                         onChange={(e) => setSelectedVram(e.target.value)}
                         disabled={!hasVramOptions}
@@ -628,11 +620,11 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="col-span-7">
                     <label className={`block text-xs font-medium mb-1.5 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Quantidade</label>
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       min="1"
                       value={quantity}
                       onChange={(e) => setQuantity(e.target.value)}
@@ -648,8 +640,8 @@ export default function App() {
                     <span>Custo Unitário (R$)</span>
                     <span className="italic opacity-70">Opcional</span>
                   </label>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     min="0"
                     step="0.01"
                     value={cost}
@@ -659,8 +651,8 @@ export default function App() {
                   />
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={!selectedModel || showCustomForm}
                   className={`w-full py-2.5 px-4 text-sm font-semibold rounded-lg transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed border ${isDark ? 'bg-slate-800 border-slate-700 hover:bg-slate-700 text-white' : 'bg-indigo-600 hover:bg-indigo-700 border-indigo-600 text-white'}`}
                 >
@@ -688,19 +680,19 @@ export default function App() {
                           <tr key={item.id} className={isDark ? 'bg-slate-800' : 'bg-slate-50'}>
                             <td className="p-3">
                               <div className={`font-semibold text-xs mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>{item.name}</div>
-                              <div className="flex gap-2 flex-wrap items-center">
+                              <div className="flex flex-wrap items-center gap-2">
                                 <div className="w-16">
                                   <label className={`block text-[10px] mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Qtd</label>
-                                  <input type="number" min="1" value={editForm.quantity} onChange={e => setEditForm({...editForm, quantity: e.target.value})} className={`w-full px-1.5 py-1 text-xs border rounded ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`} />
+                                  <input type="number" min="1" value={editForm.quantity} onChange={e => setEditForm({ ...editForm, quantity: e.target.value })} className={`w-full px-1.5 py-1 text-xs border rounded ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`} />
                                 </div>
                                 <div className="w-20">
                                   <label className={`block text-[10px] mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Custo (R$)</label>
-                                  <input type="number" min="0" step="0.01" value={editForm.cost} onChange={e => setEditForm({...editForm, cost: e.target.value})} className={`w-full px-1.5 py-1 text-xs border rounded ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`} />
+                                  <input type="number" min="0" step="0.01" value={editForm.cost} onChange={e => setEditForm({ ...editForm, cost: e.target.value })} className={`w-full px-1.5 py-1 text-xs border rounded ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`} />
                                 </div>
                                 {item.memory && item.memory.length > 0 && (
                                   <div className="w-20">
                                     <label className={`block text-[10px] mb-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>VRAM</label>
-                                    <select value={editForm.selectedVram || ''} onChange={e => setEditForm({...editForm, selectedVram: e.target.value})} className={`w-full px-1.5 py-1 text-xs border rounded ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}>
+                                    <select value={editForm.selectedVram || ''} onChange={e => setEditForm({ ...editForm, selectedVram: e.target.value })} className={`w-full px-1.5 py-1 text-xs border rounded ${isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'}`}>
                                       {item.memory.map(m => <option key={m} value={m}>{m} GB</option>)}
                                     </select>
                                   </div>
@@ -708,9 +700,9 @@ export default function App() {
                               </div>
                             </td>
                             <td className="p-3 text-center align-middle">
-                                <span className={`text-[10px] italic ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Editando...</span>
+                              <span className={`text-[10px] italic ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Editando...</span>
                             </td>
-                            <td className="p-3 text-right space-x-1 whitespace-nowrap align-middle">
+                            <td className="p-3 space-x-1 text-right align-middle whitespace-nowrap">
                               <button onClick={() => saveEdit(item.id)} className="p-1.5 text-green-500 hover:bg-green-500/10 rounded transition-colors" title="Salvar">
                                 <CheckIcon />
                               </button>
@@ -724,7 +716,7 @@ export default function App() {
                           <tr key={item.id} className={`transition-colors ${isDark ? 'hover:bg-slate-800/50' : 'hover:bg-slate-50'}`}>
                             <td className="p-3">
                               <div className={`font-semibold text-xs ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                                {item.name} {item.selectedVram && <span className="opacity-70 font-normal">({item.selectedVram}GB)</span>}
+                                {item.name} {item.selectedVram && <span className="font-normal opacity-70">({item.selectedVram}GB)</span>}
                               </div>
                               <div className={`text-[10px] mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                                 {item.quantity} un. {item.cost > 0 && `• ${formatCurrency(item.cost)}/cada`}
@@ -732,9 +724,9 @@ export default function App() {
                             </td>
                             <td className="p-3 text-center">
                               <label className="relative inline-flex items-center cursor-pointer">
-                                <input 
-                                  type="checkbox" 
-                                  className="sr-only peer" 
+                                <input
+                                  type="checkbox"
+                                  className="sr-only peer"
                                   checked={item.includedInTotal}
                                   onChange={() => toggleIncludeInTotal(item.id)}
                                 />
@@ -742,14 +734,14 @@ export default function App() {
                               </label>
                             </td>
                             <td className="p-3 text-right whitespace-nowrap">
-                              <button 
+                              <button
                                 onClick={() => startEdit(item)}
                                 className={`p-1.5 rounded transition-colors ${isDark ? 'text-slate-400 hover:text-indigo-400 hover:bg-slate-800' : 'text-slate-400 hover:text-indigo-600 hover:bg-slate-100'}`}
                                 title="Editar item"
                               >
                                 <EditIcon />
                               </button>
-                              <button 
+                              <button
                                 onClick={() => removeItem(item.id)}
                                 className={`p-1.5 rounded transition-colors ml-1 ${isDark ? 'text-slate-500 hover:text-red-400 hover:bg-slate-800' : 'text-slate-400 hover:text-red-500 hover:bg-slate-100'}`}
                                 title="Remover item"
@@ -768,22 +760,22 @@ export default function App() {
           </div>
 
           {/* Coluna da Direita: Gráficos */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="space-y-4 lg:col-span-7">
             {selectedItems.length === 0 ? (
               <div className={`h-full min-h-[300px] flex flex-col items-center justify-center rounded-xl border border-dashed p-8 text-center ${isDark ? 'bg-[#0f172a] border-slate-700 text-slate-500' : 'bg-white border-slate-300 text-slate-400'}`}>
                 <ChartIcon />
                 <p className={`mt-4 font-medium text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Nenhum hardware na lista</p>
-                <p className="text-xs mt-1">Selecione componentes ao lado para gerar comparações.</p>
+                <p className="mt-1 text-xs">Selecione componentes ao lado para gerar comparações.</p>
               </div>
             ) : (
               <>
                 {/* Gráfico 1: Processamento */}
-                <BarChart 
-                  data={chartData} 
-                  dataKey="totalTflops" 
-                  nameKey="displayName" 
-                  label="Poder de Processamento Bruto (TFLOPS) - Quanto maior, melhor" 
-                  color="bg-indigo-500" 
+                <BarChart
+                  data={chartData}
+                  dataKey="totalTflops"
+                  nameKey="displayName"
+                  label="Poder de Processamento Bruto (TFLOPS) - Quanto maior, melhor"
+                  color="bg-indigo-500"
                   formatValue={v => `${v.toLocaleString('pt-BR', { maximumFractionDigits: 1 })} TF`}
                   isDark={isDark}
                 />
@@ -791,30 +783,30 @@ export default function App() {
                 {/* Exibe gráficos de Custo Apenas se houver itens COM custo cadastrado */}
                 {financialChartData.length > 0 ? (
                   <>
-                    <BarChart 
-                      data={financialChartData} 
-                      dataKey="tflopsPerDollar" 
-                      nameKey="displayName" 
-                      label="Eficiência de Investimento (TFLOPS por R$) - Quanto maior, melhor" 
-                      color="bg-emerald-500" 
+                    <BarChart
+                      data={financialChartData}
+                      dataKey="tflopsPerDollar"
+                      nameKey="displayName"
+                      label="Eficiência de Investimento (TFLOPS por R$) - Quanto maior, melhor"
+                      color="bg-emerald-500"
                       formatValue={v => `${v.toFixed(6)} TF/R$`}
                       isDark={isDark}
                     />
 
-                    <BarChart 
-                      data={financialChartData} 
-                      dataKey="costPerTflop" 
-                      nameKey="displayName" 
-                      label="Custo por Unidade de TFLOP (R$) - Quanto menor, melhor" 
-                      color="bg-rose-500" 
+                    <BarChart
+                      data={financialChartData}
+                      dataKey="costPerTflop"
+                      nameKey="displayName"
+                      label="Custo por Unidade de TFLOP (R$) - Quanto menor, melhor"
+                      color="bg-rose-500"
                       formatValue={v => formatCurrency(v)}
                       isDark={isDark}
                     />
                   </>
                 ) : (
-                   <div className={`p-5 rounded-xl border text-xs text-center italic ${isDark ? 'bg-[#0f172a] border-slate-800 text-slate-500' : 'bg-white border-slate-200 text-slate-500'}`}>
-                     Adicione um valor de "Custo Unitário" aos itens para visualizar os gráficos de Eficiência Financeira e Custo Direto.
-                   </div>
+                  <div className={`p-5 rounded-xl border text-xs text-center italic ${isDark ? 'bg-[#0f172a] border-slate-800 text-slate-500' : 'bg-white border-slate-200 text-slate-500'}`}>
+                    Adicione um valor de "Custo Unitário" aos itens para visualizar os gráficos de Eficiência Financeira e Custo Direto.
+                  </div>
                 )}
               </>
             )}
