@@ -81,6 +81,54 @@ Este projeto foi construído como um componente único em React (`App.jsx`) util
     Acesse a URL gerada (geralmente `http://localhost:5173`) no seu navegador.
     
 
+
+## 🐳 Rodando com Docker
+
+Se você preferir não instalar o Node.js na sua máquina, pode rodar o projeto inteiro utilizando o **Docker** e o **Docker Compose**. O projeto já está configurado com um _multi-stage build_ utilizando o Nginx, sendo perfeito também para deploy em produção.
+
+### Pré-requisitos
+
+-   [Docker](https://www.docker.com/get-started "null") instalado.
+    
+-   Docker Compose instalado (geralmente já vem com o Docker Desktop).
+    
+
+### Passo a passo
+
+1.  **Faça o clone do repositório:**
+    
+    ```
+    git clone [https://github.com/douglaswp/hardware-ai.git](https://github.com/douglaswp/hardware-ai.git)
+    cd hardware-ai
+    
+    ```
+    
+2.  **Inicie o container em segundo plano (detached mode):**
+    
+    ```
+    docker compose up -d --build
+    
+    ```
+    
+3.  **Acesse a aplicação:** Abra o seu navegador e acesse: [http://localhost:8080](https://www.google.com/search?q=http://localhost:8080 "null")
+    
+
+### Comandos úteis (Docker)
+
+-   Para **parar** a aplicação:
+    
+    ```
+    docker compose down
+    
+    ```
+    
+-   Para **ver os logs** (erros ou acessos no servidor):
+    
+    ```
+    docker compose logs -f
+    
+    ```
+
 ## 📊 Origem dos Dados
 
 Este projeto realiza o parse (via Regex) dos arquivos TypeScript disponíveis abertamente no Hugging Face:
