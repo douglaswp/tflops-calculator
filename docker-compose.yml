@@ -1,12 +1,9 @@
 services:
   hardware-dashboard:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/douglaswp/tflops-calculator:latest
     container_name: hardware-ai-dashboard
-    ports:
-      # Mapeia a porta 8080 do seu computador para a porta 80 do Nginx no container
-      - "8080:80"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+    ports:
+      - "8080:80"
