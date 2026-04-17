@@ -4,22 +4,21 @@ FROM node:20-alpine AS builder
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia os arquivos de dependência primeiro (isso ajuda no cache do Docker)
+# Copia os arquivos de dependência primeiro
 COPY package*.json ./
 
 # Instala as dependências do projeto
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 # Copia todo o resto do código fonte para dentro do container
 COPY . .
 
-# Roda o comando de build para gerar os arquivos otimizados na pasta dist
+# Roda o comando de build
 RUN npm run build
 
 # ---------------------------------------------------
 
-# Estágio 2: Produção (Servir os arquivos estáticos)
-# Usamos o Nginx para servir os arquivos estáticos gerados no passo anterior
+# Estágio 2: Produção (Servidor Web Nginx)
 FROM nginx:alpine
 
 # Remove os arquivos padrão do Nginx
