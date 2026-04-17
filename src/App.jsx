@@ -13,6 +13,8 @@ const EditIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height
 const XIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>;
 const SunIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>;
 const MoonIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>;
+const DownloadIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>;
+const UploadIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>;
 
 const Spinner = () => (
   <svg className="w-8 h-8 text-indigo-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -151,7 +153,10 @@ const BarChart = ({ data, dataKey, nameKey, label, color, formatValue, hideEmpty
 export default function App() {
   const [hardwareList, setHardwareList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme_dark');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
 
   const [selectedType, setSelectedType] = useState('GPU');
   const [selectedProvider, setSelectedProvider] = useState('');
@@ -168,7 +173,20 @@ export default function App() {
   const [customTflops, setCustomTflops] = useState('');
   const [customVram, setCustomVram] = useState('');
 
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState(() => {
+    const saved = localStorage.getItem('calculation_session');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const importInputRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem('theme_dark', JSON.stringify(isDark));
+  }, [isDark]);
+
+  useEffect(() => {
+    localStorage.setItem('calculation_session', JSON.stringify(selectedItems));
+  }, [selectedItems]);
 
   useEffect(() => {
     const fetchHardwareData = async () => {
@@ -380,6 +398,43 @@ export default function App() {
 
   const cancelEdit = () => {
     setEditingId(null);
+  };
+
+  const handleExport = () => {
+    const payload = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      items: selectedItems,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `calculo-tflops-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const parsed = JSON.parse(ev.target.result);
+        const items = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.items) ? parsed.items : null);
+        if (!items) {
+          console.warn('Arquivo JSON inválido: estrutura não reconhecida.');
+          return;
+        }
+        setSelectedItems(items);
+        setEditingId(null);
+      } catch {
+        console.warn('Erro ao importar arquivo JSON: formato inválido.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
   };
 
   const chartData = useMemo(() => {
@@ -637,6 +692,28 @@ export default function App() {
 
             {selectedItems.length > 0 && (
               <div className={`rounded-xl shadow-lg border overflow-hidden ${isDark ? 'bg-[#0f172a] border-slate-800' : 'bg-white border-slate-200'}`}>
+                <div className={`flex items-center justify-between px-3 py-2 border-b ${isDark ? 'border-slate-800 bg-slate-900/60' : 'border-slate-100 bg-slate-50'}`}>
+                  <span className={`text-[10px] font-semibold uppercase tracking-wider ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                    {selectedItems.length} {selectedItems.length === 1 ? 'item' : 'itens'}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <input ref={importInputRef} type="file" accept=".json" className="hidden" onChange={handleImport} />
+                    <button
+                      onClick={() => importInputRef.current?.click()}
+                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-colors border ${isDark ? 'border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-800' : 'border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-100'}`}
+                      title="Importar projeto de um arquivo JSON"
+                    >
+                      <UploadIcon /> Importar
+                    </button>
+                    <button
+                      onClick={handleExport}
+                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-colors border ${isDark ? 'border-indigo-500/40 text-indigo-400 hover:bg-indigo-500/10' : 'border-indigo-300 text-indigo-600 hover:bg-indigo-50'}`}
+                      title="Exportar projeto como arquivo JSON"
+                    >
+                      <DownloadIcon /> Exportar
+                    </button>
+                  </div>
+                </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
@@ -736,6 +813,12 @@ export default function App() {
                 <ChartIcon />
                 <p className={`mt-4 font-medium text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Nenhum hardware na lista</p>
                 <p className="mt-1 text-xs">Selecione componentes ao lado para gerar comparações.</p>
+                <button
+                  onClick={() => importInputRef.current?.click()}
+                  className={`mt-4 flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors border ${isDark ? 'border-slate-700 text-slate-500 hover:text-slate-300 hover:bg-slate-800' : 'border-slate-200 text-slate-400 hover:text-slate-600 hover:bg-slate-100'}`}
+                >
+                  <UploadIcon /> Importar projeto salvo
+                </button>
               </div>
             ) : (
               <>
