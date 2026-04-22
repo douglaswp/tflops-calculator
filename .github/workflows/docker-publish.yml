@@ -38,7 +38,7 @@ jobs:
             type=semver,pattern={{version}}
 
       - name: Construir e Publicar a Imagem Docker
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
